@@ -67,6 +67,8 @@ for i in range(num_of_arrays):
     tree_collection += [arr]
     n+=5
 
-for i in range(num_of_arrays):
-    printArray(tree_collection[i])
-    
+# text printing contents of arrays
+# for i in range(num_of_arrays):
+#     printArray(tree_collection[i])
+
+
