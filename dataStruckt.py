@@ -128,15 +128,6 @@ class AVLTree:
         while current.left:
             current = current.left
         return current
-    # to do:
-
-    # make max value serch when in a better state
-
-    # make pre order search
-
-    # make the droping of the tree 
-
-    # make pre order search with key
 
     def search(self, root, value):
         if not root or root.value == value:
@@ -166,14 +157,72 @@ print("Tree after insertion:")
 def inorder_traversal(root):
     if root:
         inorder_traversal(root.left)
-        print(root.value),
+        print(root.value, end=" "),
         inorder_traversal(root.right)
 
-inorder_traversal(tree.root)
-print()
+def min_value(root):
+    root = root.root
+    while root.left:
+        print(root.value, end=" ")
+        root = root.left
+    print(root.value)
 
-tree.delete_value(20)
-print("Tree after deletion of 20:")
+def max_value(root):
+    root = root.root
+    while root.right:
+        print(root.value, end=" ")
+        root = root.right
+    print(root.value)
+
+def delete_node(root):
+    print("How many nodes to delete?")
+    n = int(input())
+    for i in range(n):
+        print("delete node with key: ")
+        key = int(input())
+        tree.delete_value(key)
+
+def preOrder(node):
+    if not node:
+        return
+
+    # Visit the current node first
+    # res.append(node.val)
+    print(node.value, end=" ")
+
+    # Traverse the left subtree
+    preOrder(node.left)
+
+    # Traverse the right subtree
+    preOrder(node.right)
+
+    # to do:
+
+    # make the droping of the tree 
+
+    # make pre order search with key
+
+def drop_tree(node):
+    if node is None:
+        return
+
+    # First we traverse left subtree
+    drop_tree(node.left)
+
+    # After visiting left, traverse right subtree
+    drop_tree(node.right)
+
+    print(node.value, end=" ")
+    node.value = None
+    node.left = None
+    node.right = None
+
+def pre_order_search(root):
+    print("Enter the key of the sub tree you want to search: ")
+    key = int(input())
+    sub_root = root.search_value(key)
+    preOrder(sub_root)
+
 inorder_traversal(tree.root)
 print()
 
@@ -182,3 +231,16 @@ if result:
     print("Node found")
 else:
     print("Node not found")
+
+min_value(tree)
+max_value(tree)
+# delete_node(tree)
+inorder_traversal(tree.root)
+print()
+preOrder(tree.root)
+# print()
+# drop_tree(tree.root)
+# print()
+# print(tree.root.value)
+print()
+pre_order_search(tree)
